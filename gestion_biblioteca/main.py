@@ -14,17 +14,19 @@ if __name__ == "__main__":
     print(libro_2.titulo)
     print(libro_3.titulo)
     bibl.agregar_libro(principito)
-    bibl.agregar_libro(libro_2)
-    bibl.agregar_libro(libro_3)
+    #bibl.agregar_libro(libro_2)
     print("Comparo principito")
     print(principito is libro_3)
     print(principito == libro_3) # __eq__(principito, libro_3) principito.__eq__(libro_3)
     print(bibl.get_libros())
     print(bibl.cantidad_libros())
     paco = UsuarioBasico("Paco")
-
-    bibl.agregar_usuario(paco)
-
+    try:
+        bibl.agregar_usuario(paco)
+    except BibliotecaError as b:
+        print(b)
+    except Exception as e:
+        print(e)
 
 
     print(bibl.get_usuarios())

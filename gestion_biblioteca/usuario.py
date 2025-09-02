@@ -1,3 +1,11 @@
+class UsuarioError(Exception):
+    def __init__(self, msg):
+        super().__init__(msg)
+
+class ExcededidoLimitePrestamosUsuarioError(UsuarioError):
+    def __init__(self, usuario):
+        super().__init__(f"Limite de prestamos excedido para {usuario}")
+
 class Usuario:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -17,8 +25,14 @@ class UsuarioBasico(Usuario):
 
     def pedir_prestado(self, libro):
         if len(self.libros_prestados) >= UsuarioBasico.prestamos_maximos:
-            raise ValueError("No puedo solicitar mas libros")
+            raise ExcededidoLimitePrestamosUsuarioError(self)
         super().pedir_prestado(libro)
+
+    def __str__(self):
+        return f"Usuario: {self.nombre}"
+
+    def __repr__(self):
+        return self.nombre
 
 class UsuarioVip(Usuario):
     prestamos_maximos = 5
