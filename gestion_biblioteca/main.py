@@ -1,6 +1,6 @@
-from biblioteca import Biblioteca
+from biblioteca import Biblioteca, BibliotecaError
 from libro import Libro
-from usuario import Usuario
+from usuario import UsuarioBasico
 
 if __name__ == "__main__":
     print("Gestion de bibloteca")
@@ -21,11 +21,14 @@ if __name__ == "__main__":
     print(principito == libro_3) # __eq__(principito, libro_3) principito.__eq__(libro_3)
     print(bibl.get_libros())
     print(bibl.cantidad_libros())
-    paco = Usuario("Paco")
+    paco = UsuarioBasico("Paco")
+
     bibl.agregar_usuario(paco)
+
+
+
     print(bibl.get_usuarios())
+    print(bibl.get_libros())
     bibl.prestar_libro(paco, principito)
-    bibl.prestar_libro(paco, principito)
-    print(paco.libros_prestados)
-    print(bibl.cantidad_libros())
-    print(bibl.cantidad_prestados())
+    bibl.prestar_libro(paco, libro_2)
+    print(bibl.get_libros())

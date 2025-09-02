@@ -1,5 +1,19 @@
-class Biblioteca:
+from libro import Libro
+from usuario import Usuario
 
+class BibliotecaError(Exception):
+    def __init__(self, msg):
+        super().__init__(msg)
+
+class UsuarioRepetidoError(BibliotecaError):
+    def __init__(self):
+        super().__init__("Usuario ya existe en la biblioteca")
+
+class LibroRepetidoError(BibliotecaError):
+    def __init__(self):
+        super().__init__("Libro ya existe en la biblioteca")
+
+class Biblioteca:
     def __init__(self,nombre):
         self.nombre = nombre
         self.libros = []
@@ -12,6 +26,8 @@ class Biblioteca:
         return self.libros
 
     def agregar_libro(self, libro):
+        if not isinstance(libro, Libro):
+            raise TypeError("No es un Libro")
         if libro in self.libros:
             return
         self.libros.append(libro)
@@ -23,15 +39,21 @@ class Biblioteca:
         return self.usuarios
 
     def agregar_usuario(self, usuario):
+        # Valido que el usuario no se encuentre ya en la bibloteca
+        if not isinstance(usuario, Usuario):
+            raise TypeError("No es un Usuario")
         if usuario in self.usuarios:
-            return
+            raise UsuarioRepetidoError()
         self.usuarios.append(usuario)
 
     def prestar_libro(self, usuario, libro):
+        # No puedo prestar un libro a un usuario que no pertenece a la bibl
         if usuario not in self.usuarios:
             return
+        # No puedo prestar un libro que no pertenece a la bibloteca
         if libro not in self.libros:
             return
+
         self.libros.remove(libro)
         usuario.pedir_prestado(libro)
 
