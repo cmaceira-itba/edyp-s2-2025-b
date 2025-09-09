@@ -11,8 +11,9 @@ class Usuario:
         self.nombre = nombre
         self.libros_prestados = []
 
+
     def pedir_prestado(self,libro):
-        self.libros_prestados.append(libro)
+        raise NotImplemented()
 
     def cantidad_prestados(self):
         return len(self.libros_prestados)

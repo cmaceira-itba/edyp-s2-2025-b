@@ -37,6 +37,9 @@ class Biblioteca:
     def get_libros(self):
         return self.libros
 
+    def get_libros_ordenados(self):
+        return sorted(self.get_libros(), key=lambda x: x.titulo)
+
     def agregar_libro(self, libro):
         if not isinstance(libro, Libro):
             raise TypeError("No es un Libro")
