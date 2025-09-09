@@ -13,7 +13,7 @@ class Usuario:
 
 
     def pedir_prestado(self,libro):
-        raise NotImplemented()
+        self.libros_prestados.append(libro)
 
     def cantidad_prestados(self):
         return len(self.libros_prestados)

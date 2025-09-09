@@ -29,6 +29,6 @@ if __name__ == "__main__":
 
     print(bibl.get_usuarios())
     print(bibl.get_libros())
-    bibl.prestar_libro(paco, libro_1)
+    #bibl.prestar_libro(paco, libro_1)
     bibl.prestar_libro(paco, libro_2)
     print(bibl.get_libros())

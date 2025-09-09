@@ -73,7 +73,7 @@ class Biblioteca:
             raise UsuarioNoPerteneceError()
 
     def validar_libro(self, libro):
-        if not isinstance(libro, Usuario):
+        if not isinstance(libro, Libro):
             raise TypeError("No es un Libro")
         # No puedo prestar un libro a un usuario que no pertenece a la bibl
         if libro not in self.libros:
