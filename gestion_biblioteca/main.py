@@ -13,11 +13,11 @@ if __name__ == "__main__":
     bibl.agregar_libro(libro_1)
     bibl.agregar_libro(libro_2)
     bibl.agregar_libro(libro_3)
-
+    print(bibl.ejemplares_por_titulo)
     print(bibl.get_libros_ordenados())
-# __eq__(principito, libro_3) principito.__eq__(libro_3)
     print(bibl.get_libros())
     print(bibl.cantidad_libros())
+
     paco = UsuarioBasico("Paco")
     try:
         bibl.agregar_usuario(paco)
