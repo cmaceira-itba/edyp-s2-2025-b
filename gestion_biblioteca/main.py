@@ -1,24 +1,21 @@
+
 from biblioteca import Biblioteca, BibliotecaError
 from libro import Libro
 from usuario import UsuarioBasico
+from aplicacion import AplicacionBiblioteca
 
 if __name__ == "__main__":
-    print("Gestion de bibloteca")
+    print("Gestion de biblioteca")
     bibl = Biblioteca("Alejandria")
-    print(bibl.get_nombre())
-    print(bibl.get_libros())
-    libro_1 = Libro("El principito")
-    libro_2 = Libro("La divina comedia")
-    libro_3 = Libro("El Eternauta")
+    # Libros de ejemplo
+    libro_1 = Libro("El principito", "Antoine de Saint-Exupéry", "978-3-16-148410-0", "Reynal & Hitchcock")
+    libro_2 = Libro("La divina comedia", "Dante Alighieri", "978-3-16-148410-1", "Gutenberg")
+    libro_3 = Libro("El Eternauta", "Héctor Germán Oesterheld", "978-3-16-148410-2", "Editorial Frontera")
     bibl.agregar_libro(libro_1)
     bibl.agregar_libro(libro_2)
     bibl.agregar_libro(libro_3)
-    print(bibl.ejemplares_por_titulo)
-    print(bibl.get_libros_ordenados())
-    print(bibl.get_libros())
-    print(bibl.cantidad_libros())
-
-    paco = UsuarioBasico("Paco")
+    # Usuario de ejemplo
+    paco = UsuarioBasico("Paco", "12345678")
     try:
         bibl.agregar_usuario(paco)
     except BibliotecaError as b:
@@ -26,9 +23,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(e)
 
-
-    print(bibl.get_usuarios())
-    print(bibl.get_libros())
-    #bibl.prestar_libro(paco, libro_1)
-    bibl.prestar_libro(paco, libro_2)
-    print(bibl.get_libros())
+    # Lanzar la aplicación interactiva
+    app = AplicacionBiblioteca(bibl)
+    app.ejecutar()

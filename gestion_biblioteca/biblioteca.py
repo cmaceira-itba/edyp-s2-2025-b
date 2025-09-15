@@ -1,7 +1,10 @@
 from libro import Libro
 from usuario import Usuario, UsuarioError
+import functools
 
 class Biblioteca:
+    """Representa una biblioteca con nombre, libros y usuarios."""
+
     def __init__(self,nombre):
         self.nombre = nombre
         self.ejemplares_por_titulo = {}
@@ -10,24 +13,26 @@ class Biblioteca:
     def get_nombre(self):
         return self.nombre
 
+    # Propiedad para acceder a los libros
     @property
     def libros(self):
         return self.get_libros()
 
     def get_libros(self):
-        libros = []
-        for ejemplares in self.ejemplares_por_titulo.values():
-            for ejemplar in ejemplares:
-                libros.append(ejemplar)
+        """ Obtiene una lista con todos los libros de la biblioteca """
+         # Uso reduce para concatenar todas las listas de libros en una sola
+        libros = functools.reduce(lambda x, y: x + y, self.ejemplares_por_titulo.values(),[])
         return libros
 
     def get_titulos(self):
+        """ Obtiene una lista con todos los titulos de los libros de la biblioteca """
         return self.ejemplares_por_titulo.keys()
 
     def get_libros_ordenados(self):
         return sorted(self.get_libros(), key=lambda x: x.titulo)
 
     def agregar_libro(self, libro):
+        """ Agrega un libro a la biblioteca """
         if not isinstance(libro, Libro):
             raise TypeError("No es un Libro")
         if not self.ejemplares_por_titulo.get(libro.titulo):
@@ -98,6 +103,8 @@ class Biblioteca:
             prestados += usuario.cantidad_prestados()
         return prestados
 
+
+### Excepciones de la biblioteca
 
 class BibliotecaError(Exception):
     def __init__(self, msg):
