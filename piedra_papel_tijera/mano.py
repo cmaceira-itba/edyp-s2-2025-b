@@ -1,4 +1,7 @@
-from random import choice, random
+from random import choice, random, seed
+
+# Al fijar la semilla siempre random devuelve los mismos valores
+seed("FIJO")
 
 class OpcionesEnum:
     PIEDRA = "PIEDRA"

@@ -14,7 +14,7 @@ if __name__ == "__main__":
         juego.jugar()
 
     guardador = GuardarJugadas()
-
+    print(juego.jugadas)
     guardador.guardar(juego.jugadas)
 
     # Tarea: Quien gano mas veces?
